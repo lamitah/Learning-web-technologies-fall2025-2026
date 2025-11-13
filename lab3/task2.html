@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>Email Validation</title>
+</head>
+
+<body>
+    <form onsubmit="return validateForm()">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" onblur="validateEmail()">
+        <span id="errorEmail"></span><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        let errorEmail = document.getElementById('errorEmail');
+        let emailField = document.getElementById('email');
+
+        function validateEmail() {
+            if (emailField.value === "") {
+                errorEmail.innerHTML = "Email cannot be empty.";
+                errorEmail.style.color = "red";
+            } else {
+                errorEmail.innerHTML = "";
+            }
+        }
+
+        function validateForm() {
+            validateEmail();
+            if (errorEmail.innerHTML !== "") {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+</body>
+
+</html>
