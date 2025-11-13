@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>Task 4 - Date Validation</title>
+    <script>
+        function validateForm() {
+            let d = document.getElementById("d").value;
+            let m = document.getElementById("m").value;
+            let y = document.getElementById("y").value;
+            let err = document.getElementById("err");
+            err.innerHTML = "";
+            if (d == "" || m == "" || y == "") {
+                err.innerHTML = "Date cannot be empty";
+                return false;
+            } else if (d < 1 || d > 31 || m < 1 || m > 12 || y < 1900 || y > 2016) {
+                err.innerHTML = "Invalid date (dd:1-31, mm:1-12, yyyy:1900-2016)";
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <h3>Task 4: Date of Birth</h3>
+    <form onsubmit="return validateForm()">
+        dd <input type="number" id="d" style="width:60px;">
+        mm <input type="number" id="m" style="width:60px;">
+        yyyy <input type="number" id="y" style="width:80px;"><br>
+        <span id="err" style="color: red;"></span><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,233 @@
+<html>
+
+<head>
+    <title>Person Profile</title>
+    <script>
+        function clearErrors() {
+            let spans = document.querySelectorAll('span.error');
+            spans.forEach(s => s.innerHTML = '');
+        }
+
+        function validateName() {
+            let name = document.getElementById('name').value.trim();
+            let el = document.getElementById('nameErr');
+            el.innerHTML = '';
+
+            if (name === '') {
+                el.innerHTML = 'Name cannot be empty';
+                return false;
+            }
+
+            let words = name.split(/\s+/);
+            if (words.length < 2) {
+                el.innerHTML = 'Name must contain at least two words';
+                return false;
+            }
+
+            let validChars = /^[A-Za-z.\-\s]+$/;
+            if (!validChars.test(name)) {
+                el.innerHTML = 'Name can contain only letters, dot (.), or dash (-)';
+                return false;
+            }
+
+            if (!/^[A-Za-z]/.test(name)) {
+                el.innerHTML = 'Name must start with a letter';
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateEmail() {
+            let email = document.getElementById('email').value;
+            let el = document.getElementById('emailErr');
+            el.innerHTML = '';
+            let pattern = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+            if (email === '') {
+                el.innerHTML = 'Email cannot be empty';
+                return false;
+            }
+            if (!pattern.test(email)) {
+                el.innerHTML = 'Invalid email format';
+                return false;
+            }
+            return true;
+        }
+
+        function validateGender() {
+            let radios = document.getElementsByName('gender');
+            let el = document.getElementById('genderErr');
+            el.innerHTML = '';
+            for (let r of radios) if (r.checked) return true;
+            el.innerHTML = 'Select at least one gender';
+            return false;
+        }
+
+        function validateDate() {
+            let d = document.getElementById('day').value;
+            let m = document.getElementById('month').value;
+            let y = document.getElementById('year').value;
+            let el = document.getElementById('dateErr');
+            el.innerHTML = '';
+            if (d === '' || m === '' || y === '') {
+                el.innerHTML = 'Date cannot be empty';
+                return false;
+            }
+            let dn = Number(d), mn = Number(m), yn = Number(y);
+            if (!Number.isInteger(dn) || !Number.isInteger(mn) || !Number.isInteger(yn)) {
+                el.innerHTML = 'Date fields must be numbers';
+                return false;
+            }
+            if (dn < 1 || dn > 31 || mn < 1 || mn > 12 || yn < 1900 || yn > 2016) {
+                el.innerHTML = 'Invalid date (dd:1-31, mm:1-12, yyyy:1900-2016)';
+                return false;
+            }
+            let month30 = [4, 6, 9, 11];
+            if (month30.includes(mn) && dn > 30) {
+                el.innerHTML = 'Invalid day for selected month';
+                return false;
+            }
+            if (mn === 2 && dn > 29) {
+                el.innerHTML = 'Invalid day for February';
+                return false;
+            }
+            return true;
+        }
+
+        function validateDegree() {
+            let boxes = document.getElementsByName('degree');
+            let el = document.getElementById('degreeErr');
+            el.innerHTML = '';
+            for (let b of boxes) if (b.checked) return true;
+            el.innerHTML = 'Select at least one degree';
+            return false;
+        }
+
+        function validateBlood() {
+            let val = document.getElementById('blood').value;
+            let el = document.getElementById('bloodErr');
+            el.innerHTML = '';
+            if (val === '') {
+                el.innerHTML = 'Select a blood group';
+                return false;
+            }
+            return true;
+        }
+
+        function validateUidAndPic() {
+            let pic = document.getElementById('pic');
+            let picEl = document.getElementById('picErr');
+            picEl.innerHTML = '';
+            if (!pic || pic.files.length === 0) {
+                picEl.innerHTML = 'Please upload a picture';
+                return false;
+            }
+            return true;
+        }
+
+        function validateForm() {
+            clearErrors();
+            let vName = validateName();
+            let vEmail = validateEmail();
+            let vGender = validateGender();
+            let vDate = validateDate();
+            let vDegree = validateDegree();
+            let vBlood = validateBlood();
+            let vPic = validateUidAndPic();
+            return vName && vEmail && vGender && vDate && vDegree && vBlood && vPic;
+        }
+    </script>
+</head>
+
+<body>
+    <form onsubmit="return validateForm()">
+        <table border="1" cellspacing="0" cellpadding="5" align="center">
+            <tr>
+                <th colspan="2" align="center"><b>PERSON PROFILE</b></th>
+            </tr>
+
+            <tr>
+                <td>Name</td>
+                <td>
+                    <input type="text" id="name" name="name"><br>
+                    <span id="nameErr" class="error" style="color:red;"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td>
+                    <input type="text" id="email" name="email"><br>
+                    <span id="emailErr" class="error" style="color:red;"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" name="gender" value="Male">Male
+                    <input type="radio" name="gender" value="Female">Female
+                    <input type="radio" name="gender" value="Other">Other<br>
+                    <span id="genderErr" class="error" style="color:red;"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Date of Birth</td>
+                <td>
+                    <input type="text" id="day" name="day" size="1"> /
+                    <input type="text" id="month" name="month" size="1"> /
+                    <input type="text" id="year" name="year" size="3">
+                    (dd/mm/yyyy)<br>
+                    <span id="dateErr" class="error" style="color:red;"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Blood Group</td>
+                <td>
+                    <select id="blood" name="blood">
+                        <option value="">--Select--</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select><br>
+                    <span id="bloodErr" class="error" style="color:red;"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Degree</td>
+                <td>
+                    <input type="checkbox" name="degree" value="SSC">SSC
+                    <input type="checkbox" name="degree" value="HSC">HSC
+                    <input type="checkbox" name="degree" value="BSc">BSc.
+                    <input type="checkbox" name="degree" value="MSc">MSc.<br>
+                    <span id="degreeErr" class="error" style="color:red;"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Photo</td>
+                <td>
+                    <input type="file" id="pic" name="pic" accept="image/*"><br>
+                    <span id="picErr" class="error" style="color:red;"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="right">
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset" onclick="clearErrors()">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

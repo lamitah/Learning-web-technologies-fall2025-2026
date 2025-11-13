@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>Task 7 - User ID and Picture</title>
+    <script>
+        function validateForm() {
+            let uid = document.getElementById("uid");
+            let pic = document.getElementById("pic");
+            let uidErr = document.getElementById("uidErr");
+            let picErr = document.getElementById("picErr");
+
+            // clear previous errors
+            uidErr.innerHTML = "";
+            picErr.innerHTML = "";
+
+            let valid = true;
+            let uidValue = uid.value.trim();
+
+            // validate User ID
+            if (uidValue === "") {
+                uidErr.innerHTML = "User ID cannot be empty";
+                valid = false;
+            } else if (isNaN(uidValue) || uidValue <= 0) {
+                uidErr.innerHTML = "User ID must be a positive number";
+                valid = false;
+            }
+
+            // validate Picture using files array
+            if (pic.files.length === 0) {
+                picErr.innerHTML = "Please upload a picture";
+                valid = false;
+            }
+
+            return valid;
+        }
+    </script>
+</head>
+
+<body>
+    <h3>Task 7: User ID & Picture</h3>
+    <form onsubmit="return validateForm()">
+        <label>User ID:</label><br>
+        <input type="text" id="uid"><br>
+        <span id="uidErr" style="color: red;"></span><br><br>
+
+        <label>Picture:</label><br>
+        <input type="file" id="pic"><br>
+        <span id="picErr" style="color: red;"></span><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
