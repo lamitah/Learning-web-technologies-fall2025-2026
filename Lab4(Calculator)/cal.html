@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <title>Calculator</title>
+</head>
+
+<body
+    style="font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f2f2f2; margin: 0;">
+    <div
+        style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <input type="text" id="display" disabled
+            style="width: 250px; height: 40px; font-size: 1.5em; text-align: right; padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;">
+        <div>
+            <button onclick="clearAll()"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer;">C</button>
+            <button onclick="appendToDisplay('7')"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">7</button>
+            <button onclick="appendToDisplay('8')"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">8</button>
+            <button onclick="appendToDisplay('9')"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">9</button>
+            <button onclick="appendToDisplay('+')"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">+</button>
+        </div>
+        <div>
+            <button onclick="clearEntry()"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ff6666; color: white; border: none; border-radius: 5px; cursor: pointer;">CE</button>
+            <button onclick="appendToDisplay('4')"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">4</button>
+            <button onclick="appendToDisplay('5')"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">5</button>
+            <button onclick="appendToDisplay('6')"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">6</button>
+        </div>
+        <div>
+            <button onclick="appendToDisplay('1')"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">1</button>
+            <button onclick="appendToDisplay('2')"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">2</button>
+            <button onclick="appendToDisplay('3')"
+                style="width: 50px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">3</button>
+            <button onclick="calculate()"
+                style="width: 105px; height: 50px; font-size: 1.5em; background-color: #66cc66; color: white; border: none; border-radius: 5px; cursor: pointer;">=</button>
+        </div>
+        <div>
+            <button onclick="appendToDisplay('0')"
+                style="width: 105px; height: 50px; font-size: 1.5em; background-color: #ffcc00; color: white; border: none; border-radius: 5px; cursor: pointer;">0</button>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = "";
+
+        function appendToDisplay(value) {
+            currentInput += value;
+            document.getElementById('display').value = currentInput;
+        }
+
+        function clearAll() {
+            currentInput = "";
+            document.getElementById('display').value = "";
+        }
+
+        function clearEntry() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById('display').value = currentInput;
+        }
+
+        function calculate() {
+            try {
+                let result = eval(currentInput);
+                document.getElementById('display').value = result;
+                currentInput = result.toString();
+            } catch (error) {
+                document.getElementById('display').value = "Error";
+            }
+        }
+    </script>
+</body>
+
+</html>
