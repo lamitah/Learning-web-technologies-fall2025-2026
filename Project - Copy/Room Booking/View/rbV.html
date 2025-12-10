@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Room Booking</title>
+    <link rel="stylesheet" href="../CSS/rbCss.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Room Booking</h2>
+        <form id="bookingForm">
+            <!-- Customer Name -->
+            <label for="customerName">Customer Name:</label>
+            <input type="text" id="customerName" placeholder="Enter your name">
+            <span id="errorCustomerName" class="error-message"></span><br><br>
+
+            <!-- Email -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <span id="errorEmail" class="error-message"></span><br><br>
+
+            <!-- Room Type -->
+            <label for="roomType">Select Room Type:</label>
+            <select id="roomType">
+                <option value="">--Select Room--</option>
+                <option value="single">Single Room - 1000 BDT</option>
+                <option value="double">Double Room - 15000 BDT</option>
+                <option value="suite">Suite - 2500 BDT</option>
+            </select>
+            <span id="errorRoomType" class="error-message"></span><br><br>
+
+
+            <!-- Number of Days -->
+            <label for="bookingDays">Number of Days:</label>
+            <input type="number" id="bookingDays" min="1" value="1">
+            <span id="errorBookingDays" class="error-message"></span><br><br>
+
+            <!-- Discount Code -->
+            <label for="discountCode">Discount Code (optional):</label>
+            <input type="text" id="discountCode" placeholder="Enter discount code"><br><br>
+
+            <!-- Submit Button -->
+            <button type="submit">Book Now</button>
+            <p id="formError" style="color: red; display: none;">Please fill in all required fields.</p>
+        </form>
+
+        <!-- Booking Confirmation 
+        <div id="confirmation" style="display:none;">
+            <h3>Booking Confirmation</h3>
+            <p>Your booking ID: <span id="bookingID"></span></p>
+            <p>Customer Name: <span id="confirmationName"></span></p>
+            <p>Booking Duration: <span id="confirmationDays"></span> days</p>
+        </div>-->
+    </div>
+
+    <script src="../JS/rbJs.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Food Ordering</title>
+    <link rel="stylesheet" href="../CSS/foCss.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Food Ordering</h2>
+
+        <form id="foodOrderForm">
+            <!-- Customer Name -->
+            <label for="customerName">Customer Name:</label>
+            <input type="text" id="customerName" placeholder="Enter customer name">
+            <span id="customerNameError" class="error"></span><br><br>
+
+            <!-- Room Number -->
+            <label for="roomNumber">Room Number:</label>
+            <input type="number" id="roomNumber" placeholder="Enter room number">
+            <span id="roomNumberError" class="error"></span><br><br>
+
+            <!-- Food Item (Menu) -->
+            <label for="foodItem">Select Food Item:</label>
+            <select id="foodItem">
+                <option value="">-- Select Food --</option>
+                <option value="burger">Burger - 300 TK</option>
+                <option value="pizza">Pizza - 500 TK</option>
+                <option value="pasta">Pasta - 400 TK</option>
+                <option value="coffee">Coffee - 150 TK</option>
+            </select>
+            <span id="foodItemError" class="error"></span><br><br>
+
+            <!-- Price per item display -->
+            <p id="itemPriceDisplay">Price per item: 0 TK</p><br>
+
+            <!-- Quantity -->
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" min="1" value="1">
+            <span id="quantityError" class="error"></span><br><br>
+
+            <!-- Add to room bill -->
+            <label>
+                <input type="checkbox" id="addToBill">
+                Add to room bill
+            </label>
+            <br><br>
+
+            <!-- Submit button -->
+            <button type="submit">Place Order</button>
+            <p id="formError" style="color:red; display:none;">Please fix the errors above.</p>
+        </form>
+
+        <!-- Order Confirmation
+        <div id="orderConfirmation" style="display:none; margin-top:20px;">
+            <h3>Order Confirmation</h3>
+            <p>Order ID: <span id="orderId"></span></p>
+            <p>Customer: <span id="confirmCustomerName"></span></p>
+            <p>Room Number: <span id="confirmRoomNumber"></span></p>
+            <p>Item: <span id="confirmItem"></span></p>
+            <p>Quantity: <span id="confirmQuantity"></span></p>
+            <p>Total Amount: <span id="confirmTotal"></span> TK</p>
+            <p>Billing: <span id="confirmBilling"></span></p>
+            <p>Order Status: <span id="confirmStatus"></span></p>
+        </div>-->
+    </div>
+
+    <script src="../JS/foJs.js"></script>
+</body>
+
+</html>
